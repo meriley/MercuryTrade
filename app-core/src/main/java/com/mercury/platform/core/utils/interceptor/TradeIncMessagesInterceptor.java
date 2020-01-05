@@ -1,11 +1,13 @@
 package com.mercury.platform.core.utils.interceptor;
 
 import com.mercury.platform.core.utils.interceptor.filter.MessageMatcher;
-import com.mercury.platform.shared.MessageParser;
-import com.mercury.platform.shared.config.Configuration;
+import com.mercury.platform.core.utils.interceptor.webhook.WebhookDeliverer;
+import com.mercury.platform.core.utils.interceptor.webhook.WebhookMessage;
 import com.mercury.platform.shared.config.configration.PlainConfigurationService;
+import com.mercury.platform.shared.config.Configuration;
 import com.mercury.platform.shared.config.descriptor.NotificationSettingsDescriptor;
 import com.mercury.platform.shared.entity.message.NotificationDescriptor;
+import com.mercury.platform.shared.MessageParser;
 import com.mercury.platform.shared.store.MercuryStoreCore;
 import org.apache.commons.lang3.StringUtils;
 
@@ -63,6 +65,14 @@ public class TradeIncMessagesInterceptor extends MessageInterceptor {
         public void processMessage(String message) {
             NotificationDescriptor notificationDescriptor = this.getDescriptor(message);
             if (notificationDescriptor != null) {
+                // Send Webhook Message
+                try{
+                    WebhookMessage webhookMessageContent = new WebhookMessage(notificationDescriptor.getSourceString(), notificationDescriptor.getSourceString());
+                    WebhookDeliverer.sendPost(webhookMessageContent);
+                } catch (Exception e) {
+                    System.out.println("Failed to send webhook message");
+                }
+
                 MercuryStoreCore.newNotificationSubject.onNext(notificationDescriptor);
             }
         }

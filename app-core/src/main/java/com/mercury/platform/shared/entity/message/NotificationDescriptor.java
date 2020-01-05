@@ -13,4 +13,8 @@ public class NotificationDescriptor {
     private String whisperNickname;
     private NotificationType type;
     private List<PlainMessageDescriptor> relatedMessages = new ArrayList<>();
+
+    public String getSourceString(){
+        return sourceString;
+    }
 }
