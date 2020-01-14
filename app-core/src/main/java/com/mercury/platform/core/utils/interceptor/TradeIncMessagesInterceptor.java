@@ -34,8 +34,7 @@ public class TradeIncMessagesInterceptor extends MessageInterceptor {
     protected void process(String message) {
         if (this.config.get().isIncNotificationEnable()) {
             LocalizationMatcher localizationMatcher = this.clients.stream()
-                    .filter(matcher -> matcher.isSuitableFor(message))
-                    .findAny().orElse(null);
+                    .filter(matcher -> matcher.isSuitableFor(message)).findAny().orElse(null);
             if (localizationMatcher != null) {
                 localizationMatcher.processMessage(message);
             }
@@ -44,18 +43,15 @@ public class TradeIncMessagesInterceptor extends MessageInterceptor {
 
     @Override
     protected MessageMatcher match() {
-        return message ->
-                this.clients.stream()
-                        .filter(matcher -> matcher.isSuitableFor(message))
-                        .findAny().orElse(null) != null;
+        return message -> this.clients.stream().filter(matcher -> matcher.isSuitableFor(message)).findAny()
+                .orElse(null) != null;
     }
 
     private abstract class LocalizationMatcher {
         public boolean isSuitableFor(String message) {
-            return message.contains("Hi, I would like") ||
-                    message.contains("Hi, I'd like") || message.contains("I'd like") ||
-                    message.contains("안녕하세요, ") || message.contains("구매하고 싶습니다") ||
-                    (message.contains("wtb") && message.contains("(stash"));
+            return message.contains("Hi, I would like") || message.contains("Hi, I'd like")
+                    || message.contains("I'd like") || message.contains("안녕하세요, ") || message.contains("구매하고 싶습니다")
+                    || (message.contains("wtb") && message.contains("(stash"));
         }
 
         public abstract String trimString(String src);
@@ -68,12 +64,10 @@ public class TradeIncMessagesInterceptor extends MessageInterceptor {
             NotificationDescriptor notificationDescriptor = this.getDescriptor(message);
             if (notificationDescriptor != null) {
                 // Send Webhook Message
-                try{
-                    WebhookMessage webhookMessageContent = new WebhookMessage(notificationDescriptor.getSourceString(), notificationDescriptor.getSourceString());
-                    WebhookDeliverer.sendPost(webhookMessageContent);
-                } catch (Exception e) {
-                    System.out.println("Failed to send webhook message");
-                }
+                WebhookMessage webhookMessageContent = new WebhookMessage(notificationDescriptor.getSourceString(),
+                        notificationDescriptor.getSourceString());
+                WebhookDeliverer.sendPost(TradeIncMessagesInterceptor.this.config.get().getWebhookAddresses(),
+                        webhookMessageContent);
 
                 MercuryStoreCore.newNotificationSubject.onNext(notificationDescriptor);
             }

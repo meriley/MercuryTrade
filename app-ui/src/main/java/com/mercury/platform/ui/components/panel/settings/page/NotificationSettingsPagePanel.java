@@ -46,19 +46,27 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         this.whHotkeyGroup = new HotKeyGroup();
         this.scannerHotkeyGroup = new HotKeyGroup();
 
-        JPanel whisperHelperPanel = this.adrComponentsFactory.getCounterPanel(this.getWhisperHelperPanel(), "Whisper helper:", AppThemeColor.ADR_BG, false);
+        JPanel whisperHelperPanel = this.adrComponentsFactory.getCounterPanel(this.getWhisperHelperPanel(),
+                "Whisper helper:", AppThemeColor.ADR_BG, false);
         whisperHelperPanel.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_PANEL_BORDER));
-        JPanel inPanel = this.adrComponentsFactory.getCounterPanel(this.getIncomingPanel(), "Incoming notification:", AppThemeColor.ADR_BG, false);
+        JPanel inPanel = this.adrComponentsFactory.getCounterPanel(this.getIncomingPanel(), "Incoming notification:",
+                AppThemeColor.ADR_BG, false);
         inPanel.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_PANEL_BORDER));
-        JPanel outPanel = this.adrComponentsFactory.getCounterPanel(this.getOutgoingPanel(), "Outgoing notification:", AppThemeColor.ADR_BG, false);
+        JPanel outPanel = this.adrComponentsFactory.getCounterPanel(this.getOutgoingPanel(), "Outgoing notification:",
+                AppThemeColor.ADR_BG, false);
         outPanel.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_PANEL_BORDER));
-        JPanel scannerPanel = this.adrComponentsFactory.getCounterPanel(this.getChatScannerPanel(), "Chat scanner notification:", AppThemeColor.ADR_BG, false);
+        JPanel scannerPanel = this.adrComponentsFactory.getCounterPanel(this.getChatScannerPanel(),
+                "Chat scanner notification:", AppThemeColor.ADR_BG, false);
         scannerPanel.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_PANEL_BORDER));
+        JPanel webhookPanel = this.adrComponentsFactory.getCounterPanel(this.getWebhookPanel(),
+                "Webhook notifications:", AppThemeColor.ADR_BG, false);
+        webhookPanel.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_PANEL_BORDER));
         this.container.add(this.componentsFactory.wrapToSlide(this.getGeneralPanel(), 4, 4, 2, 4));
         this.container.add(this.componentsFactory.wrapToSlide(whisperHelperPanel, 2, 4, 2, 4));
         this.container.add(this.componentsFactory.wrapToSlide(inPanel, 2, 4, 2, 4));
         this.container.add(this.componentsFactory.wrapToSlide(outPanel, 2, 4, 2, 4));
         this.container.add(this.componentsFactory.wrapToSlide(scannerPanel, 2, 4, 2, 4));
+        this.container.add(this.componentsFactory.wrapToSlide(webhookPanel, 2, 4, 2, 4));
     }
 
     @Override
@@ -83,22 +91,24 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         JPanel root = this.componentsFactory.getJPanel(new BorderLayout(), AppThemeColor.ADR_BG);
         JPanel propertiesPanel = this.componentsFactory.getJPanel(new GridLayout(0, 2, 4, 4), AppThemeColor.ADR_BG);
         root.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_PANEL_BORDER));
-        JComboBox flowDirectionPicker = componentsFactory.getComboBox(new String[]{"Upwards", "Downwards"});
+        JComboBox flowDirectionPicker = componentsFactory.getComboBox(new String[] { "Upwards", "Downwards" });
         flowDirectionPicker.addActionListener(e -> {
             switch ((String) flowDirectionPicker.getSelectedItem()) {
-                case "Upwards": {
-                    this.generalSnapshot.setFlowDirections(FlowDirections.UPWARDS);
-                    break;
-                }
-                case "Downwards": {
-                    this.generalSnapshot.setFlowDirections(FlowDirections.DOWNWARDS);
-                    break;
-                }
+            case "Upwards": {
+                this.generalSnapshot.setFlowDirections(FlowDirections.UPWARDS);
+                break;
+            }
+            case "Downwards": {
+                this.generalSnapshot.setFlowDirections(FlowDirections.DOWNWARDS);
+                break;
+            }
             }
         });
-        JLabel limitLabel = this.componentsFactory.getTextLabel(String.valueOf(this.generalSnapshot.getLimitCount()), FontStyle.REGULAR, 16);
+        JLabel limitLabel = this.componentsFactory.getTextLabel(String.valueOf(this.generalSnapshot.getLimitCount()),
+                FontStyle.REGULAR, 16);
         limitLabel.setPreferredSize(new Dimension(30, 26));
-        JSlider limitSlider = componentsFactory.getSlider(2, 20, this.generalSnapshot.getLimitCount(), AppThemeColor.ADR_BG);
+        JSlider limitSlider = componentsFactory.getSlider(2, 20, this.generalSnapshot.getLimitCount(),
+                AppThemeColor.ADR_BG);
         limitSlider.addChangeListener(e -> {
             limitLabel.setText(String.valueOf(limitSlider.getValue()));
             this.generalSnapshot.setLimitCount(limitSlider.getValue());
@@ -111,8 +121,10 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         limitPanel.add(limitLabel, BorderLayout.LINE_START);
         limitPanel.add(limitSlider, BorderLayout.CENTER);
         propertiesPanel.add(limitPanel);
-        propertiesPanel.add(this.componentsFactory.getTextLabel("Your nickname(for leave option):", FontStyle.REGULAR, 16));
-        JTextField nickNameField = this.componentsFactory.getTextField(this.generalSnapshot.getPlayerNickname(), FontStyle.DEFAULT, 15f);
+        propertiesPanel
+                .add(this.componentsFactory.getTextLabel("Your nickname(for leave option):", FontStyle.REGULAR, 16));
+        JTextField nickNameField = this.componentsFactory.getTextField(this.generalSnapshot.getPlayerNickname(),
+                FontStyle.DEFAULT, 15f);
         nickNameField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
@@ -120,7 +132,8 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
             }
         });
         propertiesPanel.add(nickNameField);
-        root.add(this.componentsFactory.wrapToSlide(propertiesPanel, AppThemeColor.ADR_BG, 2, 0, 2, 2), BorderLayout.PAGE_START);
+        root.add(this.componentsFactory.wrapToSlide(propertiesPanel, AppThemeColor.ADR_BG, 2, 0, 2, 2),
+                BorderLayout.PAGE_START);
         return root;
     }
 
@@ -140,16 +153,22 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         parametersPanel.add(hotKeyPanel);
 
         JPanel showcasePanel = this.componentsFactory.getJPanel(new BorderLayout(), AppThemeColor.ADR_BG);
-        showcasePanel.add(this.componentsFactory.getTextLabel("When you release hotkey button clipboard content will be transferred to chat.", FontStyle.REGULAR, 16), BorderLayout.PAGE_START);
+        showcasePanel.add(this.componentsFactory.getTextLabel(
+                "When you release hotkey button clipboard content will be transferred to chat.", FontStyle.REGULAR, 16),
+                BorderLayout.PAGE_START);
         JLabel img = new JLabel();
         img.setIcon(this.componentsFactory.getImage("app/whisper-helper.png"));
-        showcasePanel.add(this.componentsFactory.wrapToSlide(img, AppThemeColor.ADR_BG, 4, 4, 4, 4), BorderLayout.CENTER);
-        showcasePanel.add(this.componentsFactory.getTextLabel("Example: press hotkey button => click on 'Whisper' button => release hotkey button.", FontStyle.REGULAR, 16), BorderLayout.PAGE_END);
+        showcasePanel.add(this.componentsFactory.wrapToSlide(img, AppThemeColor.ADR_BG, 4, 4, 4, 4),
+                BorderLayout.CENTER);
+        showcasePanel.add(this.componentsFactory.getTextLabel(
+                "Example: press hotkey button => click on 'Whisper' button => release hotkey button.",
+                FontStyle.REGULAR, 16), BorderLayout.PAGE_END);
         root.add(parametersPanel, BorderLayout.PAGE_START);
         root.add(showcasePanel, BorderLayout.CENTER);
         root.setVisible(false);
         return root;
     }
+
     private JPanel getIncomingPanel() {
         JPanel root = this.componentsFactory.getJPanel(new BorderLayout(), AppThemeColor.ADR_BG);
         JPanel propertiesPanel = this.componentsFactory.getJPanel(new GridLayout(0, 2, 4, 4), AppThemeColor.ADR_BG);
@@ -173,10 +192,14 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         propertiesPanel.add(showLeague);
         root.add(propertiesPanel, BorderLayout.PAGE_START);
 
-        ResponseButtonsPanel responseButtonsPanel = new ResponseButtonsPanel(this.generalSnapshot.getButtons(), this.incHotkeyGroup);
+        ResponseButtonsPanel responseButtonsPanel = new ResponseButtonsPanel(this.generalSnapshot.getButtons(),
+                this.incHotkeyGroup);
         responseButtonsPanel.onViewInit();
-        root.add(this.wrapToCounter(this.componentsFactory.wrapToSlide(responseButtonsPanel, AppThemeColor.ADR_BG), "Response buttons:"), BorderLayout.CENTER);
-        root.add(this.wrapToCounter(this.componentsFactory.wrapToSlide(this.getInNotificationHotKeysPanel(), AppThemeColor.ADR_BG), "Hotkeys"), BorderLayout.PAGE_END);
+        root.add(this.wrapToCounter(this.componentsFactory.wrapToSlide(responseButtonsPanel, AppThemeColor.ADR_BG),
+                "Response buttons:"), BorderLayout.CENTER);
+        root.add(this.wrapToCounter(
+                this.componentsFactory.wrapToSlide(this.getInNotificationHotKeysPanel(), AppThemeColor.ADR_BG),
+                "Hotkeys"), BorderLayout.PAGE_END);
         root.setVisible(false);
         return root;
     }
@@ -192,7 +215,8 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         JPanel root = this.componentsFactory.getJPanel(new GridLayout(0, 2, 4, 4), AppThemeColor.SETTINGS_BG);
         root.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_DEFAULT_BORDER));
         this.incHotKeySnapshot.forEach(pair -> {
-            root.add(this.componentsFactory.getIconLabel(pair.getType().getIconPath(), 18, SwingConstants.CENTER, pair.getType().getTooltip()));
+            root.add(this.componentsFactory.getIconLabel(pair.getType().getIconPath(), 18, SwingConstants.CENTER,
+                    pair.getType().getTooltip()));
             HotKeyPanel hotKeyPanel = new HotKeyPanel(pair.getDescriptor());
             this.incHotkeyGroup.registerHotkey(hotKeyPanel);
             root.add(this.componentsFactory.wrapToSlide(hotKeyPanel, AppThemeColor.SETTINGS_BG, 2, 4, 1, 1));
@@ -204,7 +228,8 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         JPanel root = this.componentsFactory.getJPanel(new GridLayout(0, 2, 4, 4), AppThemeColor.SETTINGS_BG);
         root.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_DEFAULT_BORDER));
         this.outHotKeySnapshot.forEach(pair -> {
-            root.add(this.componentsFactory.getIconLabel(pair.getType().getIconPath(), 18, SwingConstants.CENTER, pair.getType().getTooltip()));
+            root.add(this.componentsFactory.getIconLabel(pair.getType().getIconPath(), 18, SwingConstants.CENTER,
+                    pair.getType().getTooltip()));
             HotKeyPanel hotKeyPanel = new HotKeyPanel(pair.getDescriptor());
             this.outHotkeyGroup.registerHotkey(hotKeyPanel);
             root.add(this.componentsFactory.wrapToSlide(hotKeyPanel, AppThemeColor.SETTINGS_BG, 2, 4, 1, 1));
@@ -216,7 +241,8 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         JPanel root = this.componentsFactory.getJPanel(new GridLayout(0, 2, 4, 4), AppThemeColor.SETTINGS_BG);
         root.setBorder(BorderFactory.createLineBorder(AppThemeColor.ADR_DEFAULT_BORDER));
         this.scannerHotKeySnapshot.forEach(pair -> {
-            root.add(this.componentsFactory.getIconLabel(pair.getType().getIconPath(), 18, SwingConstants.CENTER, pair.getType().getTooltip()));
+            root.add(this.componentsFactory.getIconLabel(pair.getType().getIconPath(), 18, SwingConstants.CENTER,
+                    pair.getType().getTooltip()));
             HotKeyPanel hotKeyPanel = new HotKeyPanel(pair.getDescriptor());
             this.scannerHotkeyGroup.registerHotkey(hotKeyPanel);
             root.add(this.componentsFactory.wrapToSlide(hotKeyPanel, AppThemeColor.SETTINGS_BG, 2, 4, 1, 1));
@@ -240,25 +266,26 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         });
         propertiesPanel.add(closeAfterLeave);
         propertiesPanel.add(this.componentsFactory.getTextLabel("Auto-close triggers:", FontStyle.REGULAR, 16));
-        String collect = this.generalSnapshot.getAutoCloseTriggers()
-                .stream()
-                .collect(Collectors.joining(","));
+        String collect = this.generalSnapshot.getAutoCloseTriggers().stream().collect(Collectors.joining(","));
         JTextField triggersField = this.componentsFactory.getTextField(collect, FontStyle.DEFAULT, 15f);
         triggersField.addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
                 generalSnapshot.setAutoCloseTriggers(Arrays.stream(triggersField.getText().split(","))
-                        .filter(it -> !it.isEmpty())
-                        .collect(Collectors.toList()));
+                        .filter(it -> !it.isEmpty()).collect(Collectors.toList()));
             }
         });
         propertiesPanel.add(triggersField);
 
-        ResponseButtonsPanel responseButtonsPanel = new ResponseButtonsPanel(this.generalSnapshot.getOutButtons(), this.outHotkeyGroup);
+        ResponseButtonsPanel responseButtonsPanel = new ResponseButtonsPanel(this.generalSnapshot.getOutButtons(),
+                this.outHotkeyGroup);
         responseButtonsPanel.onViewInit();
         root.add(propertiesPanel, BorderLayout.PAGE_START);
-        root.add(this.wrapToCounter(this.componentsFactory.wrapToSlide(responseButtonsPanel, AppThemeColor.ADR_BG), "Response buttons:"), BorderLayout.CENTER);
-        root.add(this.wrapToCounter(this.componentsFactory.wrapToSlide(this.getOutNotificationHotKeysPanel(), AppThemeColor.ADR_BG), "Hotkeys:"), BorderLayout.PAGE_END);
+        root.add(this.wrapToCounter(this.componentsFactory.wrapToSlide(responseButtonsPanel, AppThemeColor.ADR_BG),
+                "Response buttons:"), BorderLayout.CENTER);
+        root.add(this.wrapToCounter(
+                this.componentsFactory.wrapToSlide(this.getOutNotificationHotKeysPanel(), AppThemeColor.ADR_BG),
+                "Hotkeys:"), BorderLayout.PAGE_END);
         root.setVisible(false);
         return root;
     }
@@ -272,22 +299,50 @@ public class NotificationSettingsPagePanel extends SettingsPagePanel {
         });
         propertiesPanel.add(this.componentsFactory.getTextLabel("Enabled:", FontStyle.REGULAR, 16));
         propertiesPanel.add(enabled);
-//        JLabel quickResponseLabel = this.componentsFactory.getIconLabel(HotKeyType.N_QUICK_RESPONSE.getIconPath(), 18);
-//        quickResponseLabel.setFont(this.componentsFactory.getFont(FontStyle.REGULAR,16));
-//        quickResponseLabel.setForeground(AppThemeColor.TEXT_DEFAULT);
-//        quickResponseLabel.setBorder(BorderFactory.createEmptyBorder(0,4,0,0));
-//        quickResponseLabel.setText("Response message:");
-//        propertiesPanel.add(quickResponseLabel);
-//        JTextField quickResponseField = this.componentsFactory.getTextField(this.scannerSnapshot.getResponseMessage(), FontStyle.BOLD, 15f);
-//        quickResponseField.addFocusListener(new FocusAdapter() {
-//            @Override
-//            public void focusLost(FocusEvent e) {
-//                scannerSnapshot.setResponseMessage(quickResponseField.getText());
-//            }
-//        });
-//        propertiesPanel.add(this.componentsFactory.wrapToSlide(quickResponseField,AppThemeColor.ADR_BG,0,0,0,4));
+        // JLabel quickResponseLabel =
+        // this.componentsFactory.getIconLabel(HotKeyType.N_QUICK_RESPONSE.getIconPath(),
+        // 18);
+        // quickResponseLabel.setFont(this.componentsFactory.getFont(FontStyle.REGULAR,16));
+        // quickResponseLabel.setForeground(AppThemeColor.TEXT_DEFAULT);
+        // quickResponseLabel.setBorder(BorderFactory.createEmptyBorder(0,4,0,0));
+        // quickResponseLabel.setText("Response message:");
+        // propertiesPanel.add(quickResponseLabel);
+        // JTextField quickResponseField =
+        // this.componentsFactory.getTextField(this.scannerSnapshot.getResponseMessage(),
+        // FontStyle.BOLD, 15f);
+        // quickResponseField.addFocusListener(new FocusAdapter() {
+        // @Override
+        // public void focusLost(FocusEvent e) {
+        // scannerSnapshot.setResponseMessage(quickResponseField.getText());
+        // }
+        // });
+        // propertiesPanel.add(this.componentsFactory.wrapToSlide(quickResponseField,AppThemeColor.ADR_BG,0,0,0,4));
         root.add(propertiesPanel, BorderLayout.PAGE_START);
-        root.add(this.wrapToCounter(this.componentsFactory.wrapToSlide(this.getScannerNotificationHotKeysPanel(), AppThemeColor.ADR_BG), "Hotkeys"), BorderLayout.CENTER);
+        root.add(this.wrapToCounter(
+                this.componentsFactory.wrapToSlide(this.getScannerNotificationHotKeysPanel(), AppThemeColor.ADR_BG),
+                "Hotkeys"), BorderLayout.CENTER);
+        root.setVisible(false);
+        return root;
+    }
+
+    private JPanel getWebhookPanel() {
+        JPanel root = this.componentsFactory.getJPanel(new BorderLayout(), AppThemeColor.ADR_BG);
+        JPanel propertiesPanel = this.componentsFactory.getJPanel(new GridLayout(0, 2, 4, 4), AppThemeColor.ADR_BG);
+        propertiesPanel.add(this.componentsFactory.getTextLabel("Webhook Addresses(,):", FontStyle.REGULAR, 16));
+        JTextField webhookField = this.componentsFactory
+                .getTextField(
+                        this.generalSnapshot.getWebhookAddresses().stream().reduce("",
+                                (acc, item) -> acc.equals("") ? item.trim() : acc + ',' + item.trim()),
+                        FontStyle.DEFAULT, 15f);
+        webhookField.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusLost(FocusEvent e) {
+                generalSnapshot.setWebhookAddresses(
+                        Arrays.asList(webhookField.getText().trim().replaceAll("\\s", "").split(",")));
+            }
+        });
+        propertiesPanel.add(webhookField);
+        root.add(propertiesPanel, BorderLayout.PAGE_START);
         root.setVisible(false);
         return root;
     }
