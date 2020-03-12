@@ -1,7 +1,7 @@
 ### This project is STILL no longer maintained. Any updates come for personal use on my own time.
 ___
 
-# Donate to Exslims for his work on this wonderful app
+### Donate to Exslims, creator of mercury trade, for his work on this wonderful app
 
 [![Donate to Exslims for his work on this wonderful app](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png)](https://www.paypal.me/mercurytrade) 
 
