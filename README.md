@@ -13,9 +13,9 @@ Download MercuryTrade.jar: [Latest release](https://github.com/meriley/MercuryTr
 
 **ALTERNATIVE LAUNCHER**: MercuryTrade.**RAR**: [Latest release](https://github.com/meriley/MercuryTrade/releases). Unpack and run the attached .exe as administrator! Try this launcher when **something is not working**.
 
-I have a problem: [Troubleshooting](https://github.com/meriley/MercuryTrade/wiki)
+I have a problem: [Troubleshooting](https://github.com/Exslims/MercuryTrade/wiki)
 
-Feedback and suggestions: [Github](https://github.com/meriley/MercuryTrade/issues) [Discord](https://discord.gg/aG9C8XJ)
+Feedback and suggestions: [Github](https://github.com/meriley/MercuryTrade/issues)
 
 User-agreement: [Link](https://github.com/meriley/MercuryTrade/wiki/User-agreement)
 
