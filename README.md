@@ -1,25 +1,23 @@
-### This project is no longer maintained but it will still work until there are some breaking changes in the game, please use alternative app.
+### This project is STILL no longer maintained. Any updates come for personal use on my own time.
 ___
 
-[![Donate](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png)](https://www.paypal.me/mercurytrade) 
+# Donate to Exslims for his work on this wonderful app
 
-Already more than 10k happy users! Don't forget to support it! And if you want your name to be featured in our in-app Hall of Fame (see Support tab) please provide this information within the transaction!
-
-
+[![Donate to Exslims for his work on this wonderful app](https://www.paypalobjects.com/webstatic/en_US/i/buttons/PP_logo_h_150x38.png)](https://www.paypal.me/mercurytrade) 
 
 # MercuryTrade
 
 Download and Install Java: [https://java.com/download](https://java.com/download)
 
-Download MercuryTrade.jar: [Latest release](https://github.com/Exslims/MercuryTrade/releases)
+Download MercuryTrade.jar: [Latest release](https://github.com/meriley/MercuryTrade/releases)
 
-**ALTERNATIVE LAUNCHER**: MercuryTrade.**RAR**: [Latest release](https://github.com/Exslims/MercuryTrade/releases). Unpack and run the attached .exe as administrator! Try this launcher when **something is not working**.
+**ALTERNATIVE LAUNCHER**: MercuryTrade.**RAR**: [Latest release](https://github.com/meriley/MercuryTrade/releases). Unpack and run the attached .exe as administrator! Try this launcher when **something is not working**.
 
-I have a problem: [Troubleshooting](https://github.com/Exslims/MercuryTrade/wiki)
+I have a problem: [Troubleshooting](https://github.com/meriley/MercuryTrade/wiki)
 
-Feedback and suggestions: [Github](https://github.com/Exslims/MercuryTrade/issues) [Discord](https://discord.gg/aG9C8XJ)
+Feedback and suggestions: [Github](https://github.com/meriley/MercuryTrade/issues) [Discord](https://discord.gg/aG9C8XJ)
 
-User-agreement: [Link](https://github.com/Exslims/MercuryTrade/wiki/User-agreement)
+User-agreement: [Link](https://github.com/meriley/MercuryTrade/wiki/User-agreement)
 
 
 ---
