@@ -17,7 +17,7 @@ I have a problem: [Troubleshooting](https://github.com/Exslims/MercuryTrade/wiki
 
 Feedback and suggestions: [Github](https://github.com/meriley/MercuryTrade/issues)
 
-User-agreement: [Link](https://github.com/meriley/MercuryTrade/wiki/User-agreement)
+User-agreement: [Link](https://github.com/Exslims/MercuryTrade/wiki/User-agreement)
 
 
 ---
